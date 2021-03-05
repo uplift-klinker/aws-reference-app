@@ -8,7 +8,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "predeploy": "cdk synth",
+    "predeploy": "cdk bootstrap && cdk synth",
     "deploy": "cdk deploy",
     "postdeploy": "ts-node ./lib/upload-settings.ts"
   },

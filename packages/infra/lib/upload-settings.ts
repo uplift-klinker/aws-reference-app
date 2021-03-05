@@ -11,6 +11,7 @@ export async function getOutputValue(name: string): Promise<string> {
         StackName: STACK_NAME
     }).promise();
 
+    console.log(`Found Stacks: ${JSON.stringify(response.Stacks)}`);
     const stack = (response?.Stacks || [])[0];
     if (!stack) {
         throw new Error(`Failed to find stack ${STACK_NAME}`);

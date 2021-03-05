@@ -9,7 +9,8 @@
     "build": "lerna run build --stream",
     "test": "cross-env CI=true lerna run test --stream",
     "start": "lerna run start --parallel --stream",
-    "package": "lerna run package --stream"
+    "package": "lerna run package --stream",
+    "deploy": "lerna run deploy --stream"
   },
   "workspaces": {
     "nohoist": [

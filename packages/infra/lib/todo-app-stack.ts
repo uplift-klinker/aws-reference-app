@@ -57,7 +57,10 @@ export class TodoAppStack extends cdk.Stack {
     })
 
     this.apiLambda = new nodeLambda.NodejsFunction(this, generateResourceId(id, 'lambda'), {
-      entry: API_ENTRY_PATH
+      entry: API_ENTRY_PATH,
+      bundling: {
+        logLevel: nodeLambda.LogLevel.ERROR
+      }
     })
   }
 

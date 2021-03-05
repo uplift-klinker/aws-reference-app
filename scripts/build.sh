@@ -15,8 +15,9 @@ function run_tests() {
 
 function deploy() {
   pushd "${INFRASTRUCTURE_DIRECTORY}" || exit 1
-  yarn cdk synth
-  yarn cdk deploy
+    yarn cdk bootstrap
+    yarn cdk synth
+    yarn cdk deploy
   popd || exit 1
 }
 

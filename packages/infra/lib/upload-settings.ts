@@ -7,9 +7,7 @@ const cloudFormation = new CloudFormation({region});
 const s3 = new S3({region});
 
 export async function getOutputValue(name: string): Promise<string> {
-    const response = await cloudFormation.describeStacks({
-        StackName: STACK_NAME
-    }).promise();
+    const response = await cloudFormation.describeStacks().promise();
 
     console.log(`Found Stacks: ${JSON.stringify(response.Stacks)}`);
     const stack = (response?.Stacks || [])[0];

@@ -52,6 +52,18 @@ test('when todo app stack created then api gateway is added to stack', () => {
     });
 })
 
+test('when todo app stack created then rest api is output', () => {
+    expect(stack).toHaveOutput({
+        outputName: 'todorestapiurl'
+    })
+})
+
+test('when todo app stack created then cloudfront url is output', () => {
+    expect(stack).toHaveOutput({
+        outputName: 'todowebappurl'
+    })
+})
+
 function assertHasSpaErrorResponses(stack: TodoAppStack) {
     expect(stack).toHaveResourceLike(cloudFront.CfnDistribution.CFN_RESOURCE_TYPE_NAME, {
         DistributionConfig: {

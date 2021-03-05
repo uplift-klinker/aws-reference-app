@@ -27,6 +27,7 @@ export class TodoAppStack extends cdk.Stack {
   private readonly webAppDeployment: s3Deployment.BucketDeployment;
   private readonly apiLambda: lambda.Function;
   private readonly restApi: apiGateway.LambdaRestApi;
+  private readonly outputs: Array<cdk.CfnOutput>;
 
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -71,5 +72,14 @@ export class TodoAppStack extends cdk.Stack {
       handler: this.apiLambda,
       proxy: true
     });
+
+    this.outputs = [
+        new cdk.CfnOutput(this, 'todorestapiurl', {
+          value: this.restApi.url
+        }),
+        new cdk.CfnOutput(this, 'todowebappurl', {
+          value: `https://${this.distribution.domainName}`
+        })
+    ]
   }
 }

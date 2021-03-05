@@ -3,6 +3,8 @@ import {STACK_NAME} from "./stack-name";
 import {OUTPUTS} from "./outputs";
 
 const region = process.env.CDK_DEFAULT_REGION || 'us-east-1';
+console.log(`Using region ${region}`);
+
 const cloudFormation = new CloudFormation({region});
 const s3 = new S3({region});
 

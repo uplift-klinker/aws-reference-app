@@ -1,0 +1,28 @@
+{
+  "name": "aws-reference-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "repository": "git@github.com:uplift-klinker/aws-reference-app.git",
+  "license": "MIT",
+  "scripts": {
+    "build": "lerna run build --stream",
+    "test": "lerna run test --stream",
+    "start": "lerna run start --parallel --stream",
+    "package": "lerna run package --stream"
+  },
+  "workspaces": {
+    "nohoist": [
+      "**/jest",
+      "**/jest/**",
+      "**/react-scripts",
+      "**/react-scripts/**"
+    ],
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}

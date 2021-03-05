@@ -2,7 +2,7 @@ import * as cdk from '@aws-cdk/core';
 import {TodoAppStack} from '../lib/todo-app-stack';
 import * as s3 from '@aws-cdk/aws-s3';
 import * as cloudFront from '@aws-cdk/aws-cloudfront';
-import * as s3Deployment from '@aws-cdk/aws-s3-deployment';
+import * as lambda from '@aws-cdk/aws-lambda';
 
 const STACK_ID = 'testing';
 
@@ -33,6 +33,14 @@ test('when todo app stack created then spa is uploaded to s3', () => {
         DestinationBucketName: {
             Ref: `${STACK_ID}bucket7061CAE3`
         }
+    })
+})
+
+test('when todo app stack created then lambda function is added to stack', () => {
+    const stack = createTodoAppStack();
+
+    expect(stack).toHaveResourceLike(lambda.CfnFunction.CFN_RESOURCE_TYPE_NAME, {
+        Handler: 'index.handler'
     })
 })
 

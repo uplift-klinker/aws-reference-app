@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "lerna run build --stream",
-    "test": "lerna run test --stream",
+    "test": "cross-env CI=true lerna run test --stream",
     "start": "lerna run start --parallel --stream",
     "package": "lerna run package --stream"
   },
@@ -23,6 +23,7 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "7.0.3",
     "lerna": "^4.0.0"
   }
 }

@@ -1,6 +1,6 @@
 export function Shell() {
     return (
-        <div>
+        <div aria-label="welcome">
             Hello AWS!
         </div>
     )

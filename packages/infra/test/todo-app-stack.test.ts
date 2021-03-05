@@ -64,6 +64,12 @@ test('when todo app stack created then cloudfront url is output', () => {
     })
 })
 
+test('when todo app stack created then s3 bucket name is output', () => {
+    expect(stack).toHaveOutput({
+        outputName: 'todowebappbucketname'
+    })
+})
+
 function assertHasSpaErrorResponses(stack: TodoAppStack) {
     expect(stack).toHaveResourceLike(cloudFront.CfnDistribution.CFN_RESOURCE_TYPE_NAME, {
         DistributionConfig: {

@@ -7,7 +7,10 @@
   "scripts": {
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "predeploy": "cdk synth",
+    "deploy": "cdk deploy",
+    "postdeploy": "ts-node ./lib/upload-settings.ts"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.91.0",
@@ -56,6 +59,7 @@
     "@aws-cdk/cx-api": "1.91.0",
     "@aws-cdk/lambda-layer-awscli": "1.91.0",
     "@aws-cdk/region-info": "1.91.0",
+    "aws-sdk": "2.857.0",
     "constructs": "3.2.0",
     "source-map-support": "^0.5.16"
   }

@@ -3,6 +3,8 @@
 set -ex
 
 export INFRASTRUCTURE_DIRECTORY="./packages/infra"
+export AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
+export AWS_ACCESS_KEY_SECRET="${AWS_ACCESS_KEY_SECRET}"
 
 function install() {
   yarn install

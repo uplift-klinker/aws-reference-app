@@ -13,12 +13,6 @@
     "deploy": "lerna run deploy --stream"
   },
   "workspaces": {
-    "nohoist": [
-      "**/jest",
-      "**/jest/**",
-      "**/react-scripts",
-      "**/react-scripts/**"
-    ],
     "packages": [
       "packages/*"
     ]

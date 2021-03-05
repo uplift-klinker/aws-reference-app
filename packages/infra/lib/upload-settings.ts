@@ -10,9 +10,8 @@ const cloudFormation = new CloudFormation();
 const s3 = new S3();
 
 export async function getOutputValue(name: string): Promise<string> {
-    const response = await cloudFormation.describeStacks().promise();
+    const response = await cloudFormation.describeStacks({StackName: STACK_NAME}).promise();
 
-    console.log(`Found Stacks: ${JSON.stringify(response.Stacks)}`);
     const stack = (response?.Stacks || [])[0];
     if (!stack) {
         throw new Error(`Failed to find stack ${STACK_NAME}`);

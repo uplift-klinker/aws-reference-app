@@ -6,6 +6,8 @@ import * as cloudFront from '@aws-cdk/aws-cloudfront';
 import * as origins from '@aws-cdk/aws-cloudfront-origins';
 import * as lambda from '@aws-cdk/aws-lambda';
 import * as nodeLambda from '@aws-cdk/aws-lambda-nodejs';
+import * as logs from "@aws-cdk/aws-logs";
+import * as apiGateway from '@aws-cdk/aws-apigateway';
 
 const WEB_CLIENT_PATH = path.resolve(__dirname, '..', '..', 'web-client', 'build');
 const API_ENTRY_PATH = path.resolve(__dirname, '..', '..', 'api', 'index.ts');
@@ -24,6 +26,7 @@ export class TodoAppStack extends cdk.Stack {
   private readonly distribution: cloudFront.Distribution;
   private readonly webAppDeployment: s3Deployment.BucketDeployment;
   private readonly apiLambda: lambda.Function;
+  private readonly restApi: apiGateway.LambdaRestApi;
 
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -58,10 +61,15 @@ export class TodoAppStack extends cdk.Stack {
 
     this.apiLambda = new nodeLambda.NodejsFunction(this, generateResourceId(id, 'lambda'), {
       entry: API_ENTRY_PATH,
+      logRetention: logs.RetentionDays.ONE_WEEK,
       bundling: {
         logLevel: nodeLambda.LogLevel.ERROR
       }
-    })
-  }
+    });
 
+    this.restApi = new apiGateway.LambdaRestApi(this, generateResourceId(id, 'rest-api'), {
+      handler: this.apiLambda,
+      proxy: true
+    });
+  }
 }

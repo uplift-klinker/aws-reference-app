@@ -2,8 +2,9 @@ import {S3, CloudFormation} from 'aws-sdk';
 import {STACK_NAME} from "./stack-name";
 import {OUTPUTS} from "./outputs";
 
-const cloudFormation = new CloudFormation();
-const s3 = new S3();
+const region = process.env.CDK_DEFAULT_REGION || 'us-east-1';
+const cloudFormation = new CloudFormation({region});
+const s3 = new S3({region});
 
 export async function getOutputValue(name: string): Promise<string> {
     const response = await cloudFormation.describeStacks({
